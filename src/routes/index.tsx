@@ -14,9 +14,7 @@ function Home() {
         Edit <code>src/routes/index.tsx</code> to get started.
       </p>
 
-      {/* <Suspense> */}
         <Child />
-      {/* </Suspense> */}
     </div>
   )
 }
@@ -27,7 +25,9 @@ function Child() {
     queryFn: () => createFromFetch(fetch('/rsc/ServerComponent'))
   })
 
-  if (query.status === 'success') return query.data;
+  if (query.status === 'success') {
+    return <Suspense>{query.data}</Suspense>;
+  }
 
   return undefined;
 }
